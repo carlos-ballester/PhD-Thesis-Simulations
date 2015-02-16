@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" "http://www.web3d.org/specifications/x3d-3.0.dtd">
+
+<X3D profile='Interactive' version='3.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation=' http://www.web3d.org/specifications/x3d-3.0.xsd '>
+<head>
+<meta name='title' content='Sun.x3d'/>
+<meta name='creator' content='Selcuk OZTURK'/>
+<meta name='description' content='Model that represents the sun in the sky.'/>
+<meta name='created' content='15 August 2002'/>
+<meta name='modified' content='12 October 2002'/>
+<meta name='identifier' content='https://savage.nps.edu/Savage/AircraftMiscellaneous/Zeppelin/Sun.x3d'/>
+<meta name='generator' content='X3D-Edit 3.2, https://savage.nps.edu/X3D-Edit'/>
+<meta name='license' content='../../license.html'/>
+</head>
+<!--
+Index for DEF nodes: CLOCK, COLOR, SunPath
+Index for Viewpoint image: Viewpoint_1
+-->
+<Scene>
+<Viewpoint description='Sun' position='30 30 -10' fieldOfView='0.7854'/>
+<Transform translation='30 30 -50'>
+<Shape>
+<Appearance>
+<!-- COLOR ROUTE:  [from SunPath.value_changed to set_diffuseColor ] -->
+<Material DEF='COLOR' diffuseColor='1 1 0' shininess='0.8'/>
+</Appearance>
+<Sphere radius='3'/>
+</Shape>
+<!-- CLOCK ROUTE:  [from fraction_changed to SunPath.set_fraction ] -->
+<TimeSensor DEF='CLOCK' cycleInterval='10' loop='true'/>
+<!-- SunPath ROUTEs:  [from CLOCK.fraction_changed to set_fraction ] [from value_changed to COLOR.set_diffuseColor ] -->
+<ColorInterpolator DEF='SunPath' key='0 0.25 0.5 0.75 1.0' keyValue='1 1 0 1 0.8 0 1 0.5 0 1 0.8 0 1 1 0'/>
+</Transform>
+<ROUTE fromNode='CLOCK' fromField='fraction_changed' toNode='SunPath' toField='set_fraction'/>
+<ROUTE fromNode='SunPath' fromField='value_changed' toNode='COLOR' toField='set_diffuseColor'/>
+<PointLight attenuation='1 1 1' color='0.6 0.3 0' radius='500'/>
+</Scene>
+</X3D> 
